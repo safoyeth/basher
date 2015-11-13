@@ -1,6 +1,24 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
+############################################################################
+#    basher - easy parser of bash.im runet quoter                          #
+#    Copyright (C) 2013 Sergey Baravicov aka Safoyeth                      # 
+#                                                                          #
+#    This program is free software: you can redistribute it and/or modify  #
+#    it under the terms of the GNU General Public License as published by  #
+#    the Free Software Foundation, either version 3 of the License, or     # 
+#    (at your option) any later version.                                   #
+#                                                                          #  
+#    This program is distributed in the hope that it will be useful,       #
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#    GNU General Public License for more details.                          #
+#                                                                          #
+#    You should have received a copy of the GNU General Public License     #
+#    along with this program.  If not, see http://www.gnu.org/licenses/    #
+############################################################################
+
 import re
 import sys
 import random
@@ -13,9 +31,12 @@ except:
  
 class Main(QMainWindow):
     '''
-    class Main - создание окна приложения.
-    '''
+    Main inherits QMainWindow. Main WIndows of the application
+    ''' 
     def __init__(self):
+        '''
+        initialization 
+        '''
         super(Main, self).__init__()
  
         self.index = 0
@@ -44,12 +65,14 @@ class Main(QMainWindow):
  
     def getRandom(self):
         '''
-        getRandom() - получает случайную цитату с сайта.
+        getRandom() - gets random quote from bash.in using requests to get, regular
+        expression to find the text and random.randint to randomize quotes
         '''
         self.progress.setValue(2)
         self.text.append("<span style='color:green';>BASH.IM {RANDOM}</span></br>")
         self.progress.setValue(4)
-        self.text.append(re.findall('<div class="text">.*</div>', requests.get("http://bash.im/random").text)[random.randint(0, 10)])
+        self.text.append(re.findall('<div class="text">.*</div>',
+                                    requests.get("http://bash.im/random").text)[random.randint(0, 10)])
         self.progress.setValue(6)
         self.text.append("<br/>")
         self.progress.setValue(8)
@@ -59,7 +82,9 @@ class Main(QMainWindow):
  
     def getNew(self):
         '''
-        getNew() - получает новые цитаты.
+        getNew() - gets new quotes. Using requests and regular expression.
+        Every time when the user runs the script getNew() may be called and
+        the quotes may be retrieved.
         '''
         if not self.statuz:
             self.progress.setValue(1)
@@ -70,7 +95,8 @@ class Main(QMainWindow):
                     self.progress.setValue(3)
                     self.text.append(u"<span style='color:green';>BASH.IM {Свежачок!}</span></br>")
                     self.progress.setValue(4)
-                    self.text.append(re.findall('<div class="text">.*</div>', requests.get("http://bash.im").text)[each])
+                    self.text.append(re.findall('<div class="text">.*</div>',
+                                                requests.get("http://bash.im").text)[each])
                     self.progress.setValue(5)
                     self.text.append("<br/>")
                     self.progress.setValue(6)
@@ -89,7 +115,7 @@ class Main(QMainWindow):
  
     def keyPressEvent(self, event):
         '''
-        keyPressEvent() - привязывает F4 к получению новых цитат, а F5 к получению случайной.
+        keyPressEvent() - bind F4 to getNew() and F5 to getRandom().
         '''
         if event.key() == Qt.Key_F5:
             self.getRandom()
@@ -98,7 +124,7 @@ class Main(QMainWindow):
  
 def main():
     '''
-    main() - главный цикл приложения.
+    main() - classic routine
     '''
     application = QApplication(sys.argv)
     window = Main()
