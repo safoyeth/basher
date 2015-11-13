@@ -3,7 +3,7 @@
 
 ############################################################################
 #    basher - easy parser of bash.im runet quoter                          #
-#    Copyright (C) 2013 Sergey Baravicov aka Safoyeth                      # 
+#    Copyright (C) 2014 Sergey Baravicov aka Safoyeth                      # 
 #                                                                          #
 #    This program is free software: you can redistribute it and/or modify  #
 #    it under the terms of the GNU General Public License as published by  #
