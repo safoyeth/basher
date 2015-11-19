@@ -4,7 +4,9 @@
 
 Зависимости: 
 
-python 2 (протестировано на python 2.6+) или python 3 
+python 2 (протестировано на python 2.6+) или python 3, 
 PyQt4 или PyQt5  
 
 python-requests
+
+Добавлен exe (cx_frozen). Экстремально нестабилен под Windows 10.
