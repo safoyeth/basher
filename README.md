@@ -9,4 +9,4 @@ PyQt4 или PyQt5
 
 python-requests
 
-Добавлен exe (cx_frozen). Экстремально нестабилен под Windows 10.
+Добавлен exe (cx_frozen). 
