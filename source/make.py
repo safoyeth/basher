@@ -4,7 +4,7 @@
 import sys
 from cx_Freeze import setup, Executable
 
-build_exe_options = {"icon": "net.ico", "include_files": ["net.ico"], "constants": []}
+build_exe_options = {"icon": "net.ico", "includes": ["atexit"]}
 base = None
 if sys.platform == "win32":
     base = "Win32GUI"
